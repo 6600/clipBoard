@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<input id="foo" class="form-control" value="复制这里的文字到剪切板中..." type="text">
+	<button class="btn btn-default" type="button" data-clipboard-action="copy" data-clipboard-target="#foo">复制到剪切板</button>
+	<br>
+	<textarea id="bar" class="form-control" rows="3">剪切这些文本（你也可以自己输入文本）</textarea>
+	<button type="button" class="btn btn-default" data-clipboard-action="cut" data-clipboard-target="#bar">剪切</button>
+	<br>
+	<div class="copydiv">这里是DIV中的文本</div>
+	<button type="button" class="btn btn-default" data-clipboard-action="copy" data-clipboard-target=".copydiv">复制</button>
+	<br>
+	<p>通过text参数来进行复制操作</p>
+	<div class="row mt50">
+		<div class="col-lg-12">
+			<button type="button" class="btn2 btn-default">复制</button>
+		</div>
+	</div><!-- /.row -->
+<script type="text/javascript" src="clipboard.js"></script>
+
+<!-- 3. Instantiate clipboard -->
+<script type="text/javascript">
+var clipboard = new Clipboard('.btn');
+
+clipboard.on('success', function(e) {
+	alert("文字已复制到剪贴板中");
+	console.log(e);
+});
+
+clipboard.on('error', function(e) {
+	console.log(e);
+});
+</script>
+
+<script>
+var clipboard = new Clipboard('.btn2', {
+	text: function() {
+		return '这里是text参数返回的内容';
+	}
+});
+
+clipboard.on('success', function(e) {
+	alert("文字已复制到剪贴板中");
+	console.log(e);
+});
+
+clipboard.on('error', function(e) {
+	console.log(e);
+});
+</script>
+
+
+</body></html>
